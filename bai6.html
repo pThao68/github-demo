@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 6 - Thực hành lập trình web</title>
+    <style>
+        body {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 17px;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+}
+
+.box {
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #000;
+}
+
+.box span.title {
+    width: 100px;
+    display: inline-block;
+}
+.box .cont {
+    margin: 5px;
+}
+
+.box .action {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.box .action button {
+    cursor: pointer;
+}
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="content">
+            <div class="cont">
+                <span class="title">Ngày sinh </span>
+                <input type="text" id="txtNgaysinh">
+            </div>
+            <div class="cont">
+                <span class="title">Cung</span>
+                <input type="text" id="txtCung">
+            </div>
+        </div>
+        <div class="action">
+            <button id="xem">Xem</button>
+            <button id="xoa">Xoá</button>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById("xem").addEventListener("click", function(){
+        let val = document.getElementById("txtNgaysinh").value;
+        let arr = val.split("/");
+
+        function kiemtra(day, month){
+        let cung = [
+            "", "Bảo bình", "Song ngư", "Bạch dương", "Kim ngưu", "Song Tử", 
+            "Cự giải", "Sư tử", "Xử nữ", "Thiên bình", "Bọ cạp", "Nhân mã", "Ma kết"
+        ];
+        let ngay = [
+            "", 20, 19, 21, 21, 21, 22, 23, 23, 23, 24, 23, 22
+        ];
+
+        return day >= ngay[month]?cung[month]:cung[month-1];
+         }
+
+    document.getElementById("txtCung").value = kiemtra(parseInt(arr[0]), parseInt(arr[1]));
+
+    if(val == ""){
+        alert("Bạn vui lòng nhập giá trị!");
+        document.getElementById("txtCung").value = "";
+    }
+
+    })
+
+    document.getElementById("xoa").addEventListener("click", function(){
+    document.getElementById("txtNgaysinh").value = "";
+    document.getElementById("txtCung").value = "";
+    })
+
+    </script>
+
+</body>
+</html>

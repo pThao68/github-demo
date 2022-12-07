@@ -1,0 +1,49 @@
+*{
+    margin: 0px auto;
+    margin: 0px auto;
+}
+#wrapper{
+    width: 100%;
+    height: auto;
+}
+h1{
+    height: 100px;
+    background-color: black;
+    color: white;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+a:hover{
+    color:gainsboro;
+}
+
+nav{
+    height: 50px;
+    background-color: rgb(35, 130, 168);
+    color: white;
+}
+article{
+    min-height: 500px;
+}
+figure{
+    width: 30%;
+    float:left;
+}
+figure img{
+    width: 300px;
+    height: auto;
+}
+section{
+    float: right;
+    width: 70% ;
+}
+footer{
+    clear: left;
+    height:50px;
+    background-color: black;
+    color: white;
+    line-height: 40px;
+    margin-top: 30px;
+}

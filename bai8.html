@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 8</title>
+    <link rel="stylesheet" href="bai8.css">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>Tên VXL</th>
+                <th>Hãng sx</th>
+                <th>Ngày ra mắt</th>
+                <th>Giá (vnđ)</th>
+            </tr>
+        </thead>
+        <tbody id='tblCPU'>
+        </tbody>
+    </table>
+    <form>
+        <label>Tên VXL</label>
+        <input type="text" id="txtTen" autocomplete: off/>
+        <br>
+        <label>Hãng</label>
+        <input type="text" id="txtHang" />
+        <br>
+        <label>Ngày ra mắt</label>
+        <input type="text" id="txtNgay" />
+        <br>
+        <label>Giá</label>
+        <input type="text" id="txtGia" />
+        <br>
+        <input type="button" value="Hủy" id="btnHuy" onclick="huyCPU()"/>
+        <input type="button" value="Thêm" id="btnThem" onclick="luuCPU()"/>
+    </form>
+</body>
+<script>
+    // 1 mảng chứa đối tượng CPU
+var cpu = [];
+// {ten:"Fiat", hang:"500", nsx:"white","gia":2000};
+var doiTuong1 = {ten:"Core i3 7100", hang:"Intel", nsx:"20/11/2011", gia:3400000};
+var doiTuong2 = {ten:"Core i5 4430", hang:"Intel", nsx:"21/08/2012", gia:4530000};
+// Hàm thêm đối tượng CPU vào mảng
+function themCPU(doiTuong){
+    cpu.push(doiTuong);
+}
+// Thêm mặc định 1 đối tượng
+themCPU(doiTuong1);
+themCPU(doiTuong2);
+// Hiển thị mảng
+function hienThiMang(){
+    var table = document.getElementById('tblCPU');
+    var html='';
+    for(var index=0; index < cpu.length; index++){
+        html += '<tr><td>'+ (index + 1) +'</td><td>'+ cpu[index].ten +'</td><td>'+ cpu[index].hang +'</td><td>'+ cpu[index].nsx +'</td><td>'+ cpu[index].gia +'</td></tr>';
+    }
+    table.innerHTML = html;
+}
+hienThiMang();
+
+// Sự kiện nút thêm => Thêm đối tượng
+function luuCPU(){
+    var tenNhap = document.getElementById('txtTen').value;
+    var hangNhap = document.getElementById('txtHang').value;
+    var ngayNhap = document.getElementById('txtNgay').value;
+    var giaNhap = document.getElementById('txtGia').value;
+    
+
+        //Kiểm tra dữ liệu Ngày ra mắt
+        var arrayNgayNhap = ngayNhap.split('/');    
+        var arrayNgay = new Date(arrayNgayNhap[02], arrayNgayNhap[1], arrayNgayNhap[0]);
+        var date = new Date();
+        var thang = date.getMonth();
+        thang = thang + 1;
+        var arrayHienTai = new Date(date.getFullYear(), thang, date.getDate());
+        if(arrayNgay < arrayHienTai){
+            //tao doi tuong
+            var doituong = {ten: tenNhap, hang:hangNhap, nsx:ngayNhap, gia:giaNhap};    
+            //cho doi tuong vao mang
+            cpu.push(doituong);
+            // hien thi
+            hienThiMang();
+        } else {
+            alert('Ngày ra mắt nhập không đúng');
+        }     
+}
+
+//khi nhan nut Huy se xoa du lieu
+function huyCPU(){
+    var ten = document.getElementById('txtTen');
+    ten.value = '';
+    var hang = document.getElementById('txtHang');
+    hang.value = '';
+    var ngay = document.getElementById('txtNgay');
+    ngay.value = '';
+    var gia = document.getElementById('txtGia');
+    gia.value  = '';
+}
+</script>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài 7</title>
+    <link rel="stylesheet" href="bai7.css">
+</head>
+<body>
+    <form>
+        <label>Danh sách Hãng sản xuất CPU</label>
+        <select id="ddlDanhsachhangsx">
+        </select>
+        <br>
+        <label id="lblHang" style="display: none;">Hãng</label>
+        <input type="text" id="txtHang" style="display: none;"/>
+        <br>
+        <input type="button" value="Hủy" id="btnHuy" onclick="huyHang()"/>
+        <input type="button" value="Thêm" id="btnThem" onclick="themHang()"/>
+        <input type="button" id="btnLuu" value="Lưu" style="display: none;" onclick="luuHang()"/>
+    </form>    
+</body>
+<script>
+    var cpu=["intel", "AMD"];
+    function displayCpu(){
+        var select = document.getElementById('ddlDanhsachhangsx');
+        var html = '';
+        for(var index=0; index < cpu.length; index++){
+            html = html + '<option>' + cpu[index] + '</option>';
+        }
+        select.innerHTML = html;
+    }
+    displayCpu();
+    function themHang(){
+        document.getElementById('lblHang').style.display = 'inline-block';
+        document.getElementById('txtHang').style.display = 'inline-block';
+        document.getElementById('btnLuu').style.display = 'block';
+        document.getElementById('btnThem').style.display = 'none';
+    }
+
+    function reset(){
+        document.getElementById('lblHang').style.display = 'none';
+        document.getElementById('txtHang').style.display = 'none';
+        document.getElementById('btnLuu').style.display = 'none';
+        document.getElementById('btnThem').style.display = 'block';
+    }
+
+    function luuHang(){
+        var hang = document.getElementById('txtHang').value;
+        console.log(hang);
+        if(hang == ''){
+            alert('Vui long nhap du lieu');
+        } else {
+            cpu.push(hang);
+            displayCpu();
+            reset();
+        }
+    }
+    function huyHang(){
+        reset();
+    }    
+</script>
+</html>
